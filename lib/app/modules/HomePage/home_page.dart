@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ph_quiz/app/modules/HomePage/controllers/homecontroller.dart';
 
 import '../../routes/app_pages.dart';
 import '../../utils.dart';
@@ -27,11 +28,17 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            Text(
-              "5545" + "Point",
-              style: textStyle.copyWith(
-                color: Colors.white,
-              ),
+            GetBuilder<Homecontroller>(
+              id: "highscoreText",
+              init: Homecontroller(),
+              builder: (controller) {
+                return Text(
+                  controller.highScore.value + " Point",
+                  style: textStyle.copyWith(
+                    color: Colors.white,
+                  ),
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(

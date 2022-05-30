@@ -22,7 +22,11 @@ saveHighscore(int score) async {
 Future<int?> readHighscore() async {
   try {
     final prefs = await SharedPreferences.getInstance();
-    int highscore = await prefs.getInt(key_ph_quiz_highscore) ?? -999;
+    int? highscore = prefs.getInt(key_ph_quiz_highscore);
+    if (highscore == null) {
+      await saveHighscore(0);
+      highscore = 0;
+    }
     return highscore;
   } catch (e) {
     print("SAVE HIGH SCORE error: " + e.toString());

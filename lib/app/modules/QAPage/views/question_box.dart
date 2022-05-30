@@ -30,6 +30,9 @@ class QuestionBox extends StatelessWidget {
               que.questionImageUrl ?? "",
               width: 300.0,
               fit: BoxFit.contain,
+              errorBuilder: (context, obj, _) {
+                return const SizedBox.shrink();
+              },
             ),
           const SizedBox(height: 15.0),
           Text(que.question ?? "",

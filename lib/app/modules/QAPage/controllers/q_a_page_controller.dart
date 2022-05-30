@@ -46,7 +46,6 @@ class QAPageController extends GetxController {
   }
 
   void selectAns(String selectedOption) {
-
     print(selectedOption);
   }
 }
