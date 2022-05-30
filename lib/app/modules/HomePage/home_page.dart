@@ -2,24 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/app_pages.dart';
+import '../../utils.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
-    const textStyle = TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    );
     return Scaffold(
-      backgroundColor: const Color(0xFF050032),
+      backgroundColor: primaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -30,13 +21,17 @@ class _HomePageState extends State<HomePage> {
                   vertical: 20.0,
                 ),
                 child: Image.asset("assets/Logo.png")),
-            const Text(
+            Text(
               "Highscore",
-              style: textStyle,
+              style: textStyle.copyWith(
+                color: Colors.white,
+              ),
             ),
             Text(
               "5545" + "Point",
-              style: textStyle,
+              style: textStyle.copyWith(
+                color: Colors.white,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -53,10 +48,9 @@ class _HomePageState extends State<HomePage> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                       ),
-                      child: Text(
+                      child: const Text(
                         "Start",
-                        style:
-                            textStyle.copyWith(color: const Color(0xFF050032)),
+                        style: textStyle,
                       ),
                     ),
                   ),

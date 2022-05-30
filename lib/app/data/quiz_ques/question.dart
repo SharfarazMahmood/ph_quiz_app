@@ -3,7 +3,7 @@ import 'answers.dart';
 class Question {
 	String? question;
 	Answers? answers;
-	dynamic questionImageUrl;
+	String? questionImageUrl;
 	String? correctAnswer;
 	int? score;
 
@@ -25,7 +25,7 @@ class Question {
 				answers: json['answers'] == null
 						? null
 						: Answers.fromJson(json['answers'] as Map<String, dynamic>),
-				questionImageUrl: json['questionImageUrl'] as dynamic,
+				questionImageUrl: json['questionImageUrl'] as String?,
 				correctAnswer: json['correctAnswer'] as String?,
 				score: json['score'] as int?,
 			);
@@ -41,7 +41,7 @@ class Question {
 	Question copyWith({
 		String? question,
 		Answers? answers,
-		dynamic questionImageUrl,
+		String? questionImageUrl,
 		String? correctAnswer,
 		int? score,
 	}) {
