@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:ph_quiz/app/utils.dart';
 
 class Homecontroller extends GetxController {
-  var highScore = "".obs;
+  var highScore = 0.obs;
 
   @override
   void onInit() {
@@ -20,7 +20,12 @@ class Homecontroller extends GetxController {
 
   getHighscore() async {
     int? score = await readHighscore();
-    highScore.value = score.toString();
+    highScore.value = score ?? 0;
     update(["highscoreText"]);
+  }
+
+  saveHighscore(int score) async {
+    await setHighscore(score);
+    await getHighscore();
   }
 }

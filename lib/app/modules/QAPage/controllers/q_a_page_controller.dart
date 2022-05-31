@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:ph_quiz/app/data/quiz_ques/quiz_ques.dart';
 
 import '../../../data/quiz_ques/question.dart';
+import '../../HomePage/controllers/homecontroller.dart';
 import '../repository/que_repo.dart';
 
 class QAPageController extends GetxController {
@@ -12,9 +12,12 @@ class QAPageController extends GetxController {
 
   // quiz score
   late final int totalQues;
-  var score = 0.obs;
+  var totalScore = 0.obs;
   var answeredQues = 0.obs;
-  
+  var selectedAns = "".obs;
+  var isCorrectAnsSelected = false.obs;
+  var isAnsProcessing = false.obs;
+  var gameOver = false.obs;
 
   @override
   void onInit() {
@@ -32,12 +35,10 @@ class QAPageController extends GetxController {
 
   void fetchQuizQuestions() async {
     status.value = "loading";
-    print("fetch que");
     try {
       final response = await _repo.fetchQuizQuestions();
       quizQues.value = response.questions;
       totalQues = quizQues.value?.length ?? 0;
-      print(quizQues.value?[2]);
       status.value = "complete";
     } catch (e) {
       status.value = "error";
@@ -45,7 +46,22 @@ class QAPageController extends GetxController {
     }
   }
 
-  void selectAns(String selectedOption) {
-    print(selectedOption);
+  void selectAns({
+    required String selectedOption,
+    required String correctAns,
+    required int score,
+  }) async {
+    isAnsProcessing.value = true;
+    selectedAns.value = selectedOption;
+    isCorrectAnsSelected.value = correctAns == selectedOption;
+    isCorrectAnsSelected.value ? {totalScore.value += score} : null;
+
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      isAnsProcessing.value = false;
+      selectedAns.value = "";
+      isCorrectAnsSelected.value = false;
+      answeredQues.value++;
+      gameOver.value = answeredQues.value >= totalQues;
+    });
   }
 }

@@ -10,6 +10,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Homecontroller _homeController = Get.put(
+      Homecontroller(),
+      tag: "home-controller",
+    );
     return Scaffold(
       backgroundColor: primaryColor,
       body: Center(
@@ -30,10 +34,10 @@ class HomePage extends StatelessWidget {
             ),
             GetBuilder<Homecontroller>(
               id: "highscoreText",
-              init: Homecontroller(),
-              builder: (controller) {
+              tag: "home-controller",
+              builder: (_) {
                 return Text(
-                  controller.highScore.value + " Point",
+                  "${_homeController.highScore.value}  Point",
                   style: textStyle.copyWith(
                     color: Colors.white,
                   ),
