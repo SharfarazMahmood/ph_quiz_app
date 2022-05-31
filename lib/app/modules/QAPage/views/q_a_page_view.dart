@@ -27,7 +27,7 @@ class QAPageView extends GetView<QAPageController> {
               );
             } else if (controller.status.value == "complete") {
               final Question que =
-                  controller.quizQues.value?[controller.answeredQues.value + 2] ??
+                  controller.quizQues.value?[controller.answeredQues.value] ??
                       Question();
               return Column(
                 children: [
