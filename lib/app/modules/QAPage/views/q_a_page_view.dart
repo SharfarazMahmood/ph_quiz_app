@@ -53,7 +53,8 @@ class QAPageView extends GetView<QAPageController> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Congratulations !!",
+                              "Congratulations !!\nYou have completed the quiz!!",
+                              textAlign: TextAlign.center,
                               style: textStyle.copyWith(
                                 color: Colors.white,
                               ),
