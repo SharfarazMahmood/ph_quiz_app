@@ -74,7 +74,7 @@ class AnswerBox extends StatelessWidget {
           }),
         )
         .toList();
-    answersList.shuffle();
+    // answersList.shuffle();
     return Column(
       children: answersList,
     );
